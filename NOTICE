@@ -1,0 +1,41 @@
+NOTICE — clipping-merged
+=======================
+
+This merged work is licensed AGPL-3.0 overall (see LICENSE).
+It combines code and ideas from three open-source projects:
+
+1. OpenShorts — https://github.com/mutonby/openshorts — MIT License
+   (full text: licenses-MIT-openshorts.txt)
+   What was taken: clip_selection.py vendored verbatim
+   (merged_clipper/vendor/clip_selection.py); the pipeline shape
+   (faster-whisper word timestamps, Gemini-or-local-LLM moment
+   picking, smart 9:16 layouts, MCP/API concepts).
+
+2. opensource-clipping — https://github.com/NaufalRizqullah/opensource-clipping — MIT License
+   (full text: licenses-MIT-opensource-clipping.txt)
+   What was taken: the pipeline shape (Faster-Whisper large-v3,
+   Gemini curation, MediaPipe face tracking, karaoke subtitles,
+   3-second cinematic hook teaser, auto-thumbnail, B-roll and
+   uploader concepts). Its studio modules could not be imported
+   directly (they require cv2 + mediapipe at import time), so the
+   karaoke/hook/thumbnail features were reimplemented in lightweight
+   ffmpeg/Pillow glue code — see README "What is new / reimplemented".
+
+3. SupoClip — https://github.com/FujiwaraChoki/supoclip — AGPL-3.0
+   What was taken (verbatim, in merged_clipper/vendor/):
+     - supoclip_clip_duration.py (clip-length presets)
+     - supoclip_caption_templates.py (caption templates)
+     - supoclip_emoji_captions.py (emoji + emphasis annotation)
+   What was taken as reimplemented features: the virality breakdown
+   (hook / engagement / value / shareability, 0-25 each, total 0-100),
+   Twitch/Kick import (via yt-dlp), provider handling
+   (TRANSCRIPTION_PROVIDER / LLM env vars), the opening review idea,
+   built-in editor concepts (clip.py edit), direct-publishing
+   concepts (publish metadata + dry-run checklist) and the
+   performance log (track.csv).
+   NOT taken: the full Docker stack (Next.js + FastAPI + Postgres +
+   Redis, 11 services) — far too heavy for a lightweight CLI.
+
+Because SupoClip code is included, this merged work is AGPL-3.0:
+anyone who receives it, or runs it as a service for others, must
+share the source of the merged work under AGPL-3.0.

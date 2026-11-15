@@ -1,0 +1,14 @@
+# Merged free clipper — core dependencies (Python 3.10+).
+# Tested on Python 3.12 in the build VM. ffmpeg + ffprobe must be
+# installed on the system separately (apt install ffmpeg / brew / choco).
+# NOTE: faster-whisper pulls in PyAV, but this project never calls it —
+# audio is decoded with the stdlib `wave` module and passed to Whisper
+# as a numpy array, because faster-whisper 1.2.1 is incompatible with
+# the av 19.x wheel pip installs on Python 3.12 (see TEST_REPORT.md).
+faster-whisper==1.2.1
+yt-dlp
+Pillow>=10.0
+numpy>=1.26
+# Optional: only needed for Gemini moment picking (GEMINI_API_KEY).
+# The free heuristic scorer is used when this is absent / no key set.
+google-genai>=1.0
