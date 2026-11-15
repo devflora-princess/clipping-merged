@@ -3,7 +3,8 @@ __pycache__/
 *.pyc
 out/
 test_data/
-.env
 *.ass
 _work/
 .pytest_cache/
+config.bat
+node_modules

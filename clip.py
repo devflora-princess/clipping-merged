@@ -61,7 +61,20 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--transcript",
                    help="Skip transcription; use this transcript JSON.")
     p.add_argument("--no-hook", action="store_true",
-                   help="Skip the 3-second hook teaser overlay.")
+                   help="Skip the hook overlay.")
+    p.add_argument("--style", default="pro", choices=["pro", "classic"],
+                   help="pro = v2 (15-30s, Hormozi captions, punch zoom, "
+                        "silence cuts, face pan); classic = v1 behaviour.")
+    p.add_argument("--music",
+                   help="Optional music-bed file (mp3/wav); ducked under voice.")
+    p.add_argument("--no-zoom", action="store_true",
+                   help="Disable punch-in zooms (pro style).")
+    p.add_argument("--no-silence-cut", action="store_true",
+                   help="Disable silence/jump cuts (pro style).")
+    p.add_argument("--focus",
+                   help="Comma-separated focus times in seconds, e.g. "
+                        "--focus 382,800,1182 — one clip at each time, "
+                        "instead of the global top-N.")
 
     e = sub.add_parser("edit", help="Trim a rendered clip (built-in editor).")
     e.add_argument("--input", required=True)
@@ -86,10 +99,15 @@ def main(argv: list[str] | None = None) -> int:
         if args.command is None:
             # Allow `clip.py <input>` with no subcommand.
             args = parser.parse_args(["clip"] + (argv or []))
+        focus = None
+        if args.focus:
+            focus = [float(x) for x in str(args.focus).split(",") if x.strip()]
         run(args.input, args.out, n_clips=args.clips, length=args.length,
             whisper_model=args.whisper_model, llm=args.llm,
             template=args.template, transcript_path=args.transcript,
-            no_hook=args.no_hook)
+            no_hook=args.no_hook, style=args.style, music_path=args.music,
+            no_zoom=args.no_zoom, no_silence_cut=args.no_silence_cut,
+            focus_times=focus)
         return 0
     parser.print_help()
     return 2

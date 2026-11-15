@@ -12,3 +12,8 @@ numpy>=1.26
 # Optional: only needed for Gemini moment picking (GEMINI_API_KEY).
 # The free heuristic scorer is used when this is absent / no key set.
 google-genai>=1.0
+# Optional but recommended for v2 face tracking: OpenCV Haar cascade
+# face detection (MediaPipe is tried first if installed). Without it
+# the renderer falls back to a centred crop over a blurred background.
+# The Haar cascade XML is bundled in merged_clipper/data/.
+opencv-python-headless>=4.8

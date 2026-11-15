@@ -3,10 +3,11 @@
 
 A working unified CLI pipeline: download -> transcribe (faster-whisper)
 -> pick moments (Gemini if a key is set, else a free heuristic scorer
-with SupoClip's hook/engagement/value/shareability breakdown)
--> render 9:16 clips with karaoke captions (SupoClip templates),
-a 3-second hook teaser and an auto-thumbnail. No watermark, no
-monthly cap, no paid API required for the core path.
+with a Hook/Flow/Value/Trend rubric — a ranking aid, not a prediction)
+-> render 9:16 clips with Hormozi karaoke captions (Montserrat Black),
+hook overlay, punch zooms, silence cuts and face-tracked crop.
+No watermark, no monthly cap, no paid API required for the core path.
+v2.0: pro style is the default; ``--style classic`` restores v1.
 """
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
