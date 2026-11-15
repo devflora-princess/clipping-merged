@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+out/
+test_data/
+.env
+*.ass
+_work/
+.pytest_cache/
