@@ -239,7 +239,9 @@ def gemini_picks(transcript: dict, duration: float, n_clips: int = 3,
     win_text = "\n".join(
         f"[{w['start']:.1f}-{w['end']:.1f}] {w['text'][:600]}" for w in windows)
     client = genai.Client(api_key=api_key)
-    model = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash-lite")
+    # Default verified 2026-11-15: gemini-2.5-flash / gemini-2.5-flash-lite
+    # return 404 for new accounts (retired). gemini-3.5-flash works.
+    model = os.environ.get("GEMINI_MODEL", "gemini-3.5-flash")
     resp = client.models.generate_content(
         model=model, contents=_LLM_PROMPT.format(windows=win_text))
     return _llm_picks_from_json(resp.text, transcript.get("words") or [],

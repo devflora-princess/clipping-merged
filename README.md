@@ -101,7 +101,7 @@ Outputs per run: `clip01.mp4` (+ thumbnail `clip01_thumb.jpg`),
 | Thing | Key needed? |
 |---|---|
 | Download, transcribe (local Whisper), heuristic scoring, crop, karaoke captions, hook teaser, thumbnail, editor, metadata | **No — free, works offline** (after the one-time model download) |
-| Gemini moment picking | `GEMINI_API_KEY` (free tier is enough to start) |
+| Gemini moment picking | `GEMINI_API_KEY` (free tier is enough to start). Default model is `gemini-3.5-flash` (verified 2026-11-15 — the 2.5 models are retired for new accounts); override with `GEMINI_MODEL=...` if needed. |
 | Local LLM moment picking | Ollama running locally, `LLM_BASE_URL=http://localhost:11434/v1`, no key |
 | AssemblyAI transcription | `ASSEMBLY_AI_API_KEY` — paid service, **optional only**; local Whisper is the default and is used whenever AssemblyAI is unset or fails |
 | OpenAI / Anthropic LLMs | Recognised but **not implemented** — falls back to the free heuristic with a warning |
